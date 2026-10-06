@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Your Vacant Property | PropertyPortal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cloudflare.com">
+</head>
+<body>
+    <div class="theme-toggle-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+            </div>
+        </label>
+    </div>
+
+    <header class="marketing-nav">
+        <div class="brand-logo"><i class="fas fa-building-circle-check"></i> PropertyPortal</div>
+        <div class="nav-links">
+            <a href="#categories">Asset Types</a>
+            <button class="nav-cta-btn open-portal-trigger">Register Property</button>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <span class="badge-tag"><i class="fas fa-shield-halved"></i> 100% Owner Verified Platform</span>
+            <h1>Do you want your property to be <span id="changingWord" class="word-accent">rented</span>?</h1>
+            <p>Connect directly with verified buyers and tenants. Turn your vacant space into income securely with our dual-document validation portal engine.</p>
+            
+            <div class="hero-actions">
+                <button class="primary-hero-btn open-portal-trigger">
+                    <i class="fas fa-plus-circle"></i> List Your Property Now
+                </button>
+                <a href="#categories" class="secondary-hero-btn">Explore Categories</a>
+            </div>
+
+            <div class="hero-metrics">
+                <div class="metric-item"><strong>12,450+</strong><span>Properties Listed</span></div>
+                <div class="metric-item"><strong>100%</strong><span>Verified Owners</span></div>
+                <div class="metric-item"><strong>0%</strong><span>Brokerage Fees</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="categories" class="categories-section">
+        <div class="section-title">
+            <h2>Flexible Options for Every Property Asset</h2>
+            <p>Whether you own a modern apartment or an industrial warehouse, we support all transaction classifications.</p>
+        </div>
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="card-icon"><i class="fas fa-house-chimney"></i></div>
+                <h3>Residential Spaces</h3>
+                <p>List your vacant apartments, villas, builder floors, or housing units for Rent, Lease, or Sale.</p>
+            </div>
+            <div class="category-card">
+                <div class="card-icon"><i class="fas fa-store"></i></div>
+                <h3>Commercial Spaces</h3>
+                <p>Maximize value on vacant retail shops, office spaces, warehouses, or corporate showrooms.</p>
+            </div>
+            <div class="category-card">
+                <div class="card-icon"><i class="fas fa-file-shield"></i></div>
+                <h3>Dual-Document Security</h3>
+                <p>Every listing requires a compulsory Electricity Bill and Identity ID check to ensure zero scams.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- POPUP MODAL OVERLAY -->
+    <div class="portal-modal-overlay" id="portalModal">
+        <div class="public-form-container modal-form-adjustment">
+            <i class="fas fa-times portal-modal-close" id="closePortalModal"></i>
+            
+            <form id="vacancyRegistrationForm" action="https://getform.io" method="POST" enctype="multipart/form-data" novalidate>
+                <h2>Vacant Property Registry</h2>
+                <p class="subtitle" style="margin-bottom: 20px;">Submit vacant properties with secure owner verification files.</p>
+                <input type="hidden" name="unique_registration_id" id="hiddenRegistrationId">
+
+                <div class="form-grid">
+                    <div class="form-section">
+                        <h3><i class="fas fa-user-tie"></i> Owner Profile & Legal ID</h3>
+                        <div class="input-group">
+                            <label for="regUsername">Full Name (Must Match Uploaded IDs)</label>
+                            <input type="text" name="owner_name" id="regUsername" placeholder="e.g. John Doe">
+                            <div class="error-message" id="regUsernameError"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="regContact">Contact Coordinates</label>
+                            <input type="text" name="owner_contact" id="regContact" placeholder="Email or 10-digit Mobile">
+                            <div class="error-message" id="regContactError"></div>
+                        </div>
+                        <div class="input-group password-group">
+                            <label for="regPassword">Access Password</label>
+                            <input type="password" name="password" id="regPassword" placeholder="Create secure portal key">
+                            <i class="toggle-password fas fa-eye-slash"></i>
+                            <div class="error-message" id="regPasswordError"></div>
+                        </div>
+
+                        <!-- VERIFICATION 1: MANDATORY Electricity Bill -->
+                        <div class="input-group file-group mandated-verification">
+                            <label for="electricityBill">1. Compulsory Address Proof: Electricity Bill <span class="required-star">*</span></label>
+                            <div class="file-dropzone explicit-drop">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                                <span>Upload Bill (PDF, JPEG) confirming address details</span>
+                                <input type="file" name="electricity_bill" id="electricityBill" accept="image/*,.pdf">
+                            </div>
+                            <div class="file-preview-list" id="billPreviewList"></div>
+                            <div class="error-message" id="electricityBillError"></div>
+                        </div>
+
+                        
+                        <div class="verification-box style-mandatory-backup">
+                            <h4><i class="fas fa-id-card"></i> 2. Compulsory Identity Proof <span class="required-star">*</span></h4>
+                            <div class="input-group" style="margin: 0;">
+                                <select name="backup_document_type" id="backupDocType">
+                                    <option value="">-- Select Your Identity Document --</option>
+                                    <option value="Aadhaar Card">Aadhaar Card</option>
+                                    <option value="Voter ID">Voter ID Card</option>
+                                    <option value="Property Title Deed">Property Title Deed Copy</option>
+                                </select>
+                                <div class="error-message" id="backupDocTypeError"></div>
+                            </div>
+                            <div class="input-group file-group" style="margin: 0; margin-top: 10px;">
+                                <div class="file-dropzone secondary-drop">
+                                    <i class="fas fa-upload"></i>
+                                    <span>Upload chosen identity proof copy</span>
+                                    <input type="file" name="backup_verification_document" id="backupDocInput" accept="image/*,.pdf">
+                                </div>
+                                <div class="file-preview-list" id="backupDocPreviewList"></div>
+                                <div class="error-message" id="backupDocInputError"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-building-circle-check"></i> Vacancy Parameters</h3>
+                        <div class="input-group">
+                            <label for="propertyType">Property Classification</label>
+                            <select name="property_type" id="propertyType">
+                                <option value="">-- Choose Type --</option>
+                                <option value="Residential">Residential</option>
+                                <option value="Commercial">Commercial</option>
+                            </select>
+                            <div class="error-message" id="propertyTypeError"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="listingIntent">Listing Classification Category</label>
+                            <select name="listing_intent" id="listingIntent">
+                                <option value="">-- Choose Intent Option --</option>
+                                <option value="Rent">Available For Rent</option>
+                                <option value="Lease">Available For Lease</option>
+                                <option value="Sell">Available For Sale</option>
+                                <option value="Buy">Seeking to Buy</option>
+                            </select>
+                            <div class="error-message" id="listingIntentError"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="propLocation">Spatial Location / Address (Must Match Bill)</label>
